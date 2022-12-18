@@ -68,10 +68,10 @@ class FileViewController: UIViewController, UITableViewDelegate, UIImagePickerCo
         
         let sort = UserDefaults.standard.bool(forKey: "sortStatus")
         if sort == true {
-            files.sorted(by: <)
+            files.sorted{ $0 < $1 }
                 self.tableView.reloadData()
         } else {
-            files.sorted(by: >)
+            files.sorted{ $0 > $1 }
                 self.tableView.reloadData()
             }
         }
