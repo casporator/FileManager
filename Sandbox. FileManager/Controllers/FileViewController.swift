@@ -14,6 +14,8 @@ import UIKit
 class FileViewController: UIViewController, UITableViewDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     
+    var sortFromAToZ = UserDefaults.standard.bool(forKey: "SortPattern")
+    
      //  путь в котором находимся:
     var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
     
@@ -66,10 +68,10 @@ class FileViewController: UIViewController, UITableViewDelegate, UIImagePickerCo
         
         let sort = UserDefaults.standard.bool(forKey: "sortStatus")
         if sort == true {
-            files.sorted(by: >)
+            files.sorted(by: <)
                 self.tableView.reloadData()
         } else {
-            files.sorted(by: <)
+            files.sorted(by: >)
                 self.tableView.reloadData()
             }
         }
@@ -83,6 +85,7 @@ class FileViewController: UIViewController, UITableViewDelegate, UIImagePickerCo
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
+    
     
     @objc
     func createFolder(){

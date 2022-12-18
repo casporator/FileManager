@@ -81,8 +81,11 @@ class SettingsViewController: UIViewController {
 
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+    
         
         if sortMethod == true {
             sortSwitcher.isOn = true
@@ -96,12 +99,7 @@ class SettingsViewController: UIViewController {
             themeSwitcher.isOn = false
         }
         
-        let theme = UserDefaults.standard.bool(forKey: "blackTheme")
-        if theme == true {
-            view.backgroundColor = .darkGray
-        } else {
-            view.backgroundColor = .white
-        }
+        
     }
     
     func addConstraints(){
@@ -152,8 +150,10 @@ class SettingsViewController: UIViewController {
     func setTheme(){
         if themeSwitcher.isOn {
             blackTheme = true
+            view.backgroundColor = .darkGray
         } else {
             blackTheme = false
+            view.backgroundColor = .white
         }
     }
     
