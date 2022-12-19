@@ -13,7 +13,7 @@ class TextPicker {
     static let defaaultPicker = TextPicker()
     
     func showPicker(in viewController: UIViewController, complition: @escaping(_ text: String) -> Void) {
-        let alertController = UIAlertController(title: "Enter folder name", message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Enter name", message: nil, preferredStyle: .alert)
         
         alertController.addTextField { textField in
             textField.placeholder = "Enter text"

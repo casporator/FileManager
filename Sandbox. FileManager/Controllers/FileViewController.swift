@@ -110,10 +110,20 @@ class FileViewController: UIViewController, UITableViewDelegate, UIImagePickerCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let urlOfPhoto = info[.imageURL] as? URL {
-            try? FileManager.default.moveItem(atPath: urlOfPhoto.relativePath, toPath: self.path + "/" + urlOfPhoto.lastPathComponent)
-            imagePicker.dismiss(animated: true)
-            self.tableView.reloadData()
+        if let urlOPhoto = info[.imageURL] as? URL {
+            self.imagePicker.dismiss(animated: true)
+            
+            TextPicker.defaaultPicker.showPicker(in: self) { text in
+                try? FileManager.default.moveItem(atPath: urlOPhoto.relativePath,
+                                                  toPath: self.path + "/" + text)
+                
+                self.tableView.reloadData()
+            }
+        
+//        if let urlOfPhoto = info[.imageURL] as? URL {
+//            try? FileManager.default.moveItem(atPath: urlOfPhoto.relativePath, toPath: self.path + "/" + urlOfPhoto.lastPathComponent)
+//            imagePicker.dismiss(animated: true)
+//            self.tableView.reloadData()
         }
     }
     
