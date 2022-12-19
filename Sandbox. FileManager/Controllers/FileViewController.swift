@@ -57,7 +57,7 @@ class FileViewController: UIViewController, UITableViewDelegate, UIImagePickerCo
         let addFolder = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(createFolder))
         navigationItem.rightBarButtonItems = [addFolder, addFile]
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(dismissVC))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(dismissVC))
     
 
         view.addSubview(tableView)
@@ -170,6 +170,7 @@ extension FileViewController : UITableViewDataSource{
                cell.textLabel?.textColor = .blue
            } else {
                cell.detailTextLabel?.text = "photo"
+               cell.textLabel?.textColor = .black
            }
        }
          return cell
