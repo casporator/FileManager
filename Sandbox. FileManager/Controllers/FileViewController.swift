@@ -21,7 +21,15 @@ class FileViewController: UIViewController, UITableViewDelegate, UIImagePickerCo
     
     //массив файлов этой директории;
     var files: [String] {
-        (try? FileManager.default.contentsOfDirectory(atPath: path)) ?? []
+        let f = (try? FileManager.default.contentsOfDirectory(atPath: path)) ?? []
+        
+        let sort = UserDefaults.standard.bool(forKey: "sortStatus")
+        if sort == true {
+            return f.sorted{ $0 < $1 }
+              
+        } else {
+            return f.sorted{ $0 > $1 }
+            }
     }
    
     private lazy var imagePicker: UIImagePickerController = {
@@ -66,14 +74,7 @@ class FileViewController: UIViewController, UITableViewDelegate, UIImagePickerCo
             tableView.backgroundColor = .white
         }
         
-        let sort = UserDefaults.standard.bool(forKey: "sortStatus")
-        if sort == true {
-            files.sorted{ $0 < $1 }
-                self.tableView.reloadData()
-        } else {
-            files.sorted{ $0 > $1 }
-                self.tableView.reloadData()
-            }
+        tableView.reloadData()
         }
     
 
