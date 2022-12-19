@@ -25,10 +25,10 @@ class FileViewController: UIViewController, UITableViewDelegate, UIImagePickerCo
         
         let sort = UserDefaults.standard.bool(forKey: "sortStatus")
         if sort == true {
-            return f.sorted{ $0 < $1 }
+            return f.sorted(by: <)
               
         } else {
-            return f.sorted{ $0 > $1 }
+            return f.sorted(by: >)
             }
     }
    
