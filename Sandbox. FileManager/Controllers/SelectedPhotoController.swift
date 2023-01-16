@@ -16,6 +16,7 @@ class SelectedPhotoController: UIViewController {
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
+      
         return image
     }()
     

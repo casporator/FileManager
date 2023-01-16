@@ -149,8 +149,10 @@ extension FileViewController : UITableViewDataSource{
     // Заполняем данными таблицу.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "defaultTableCellIdentifier", for: indexPath)
+        var content = cell.defaultContentConfiguration()
         
-        cell.textLabel?.text = files[indexPath.row]
+        content.text = files[indexPath.row]
+        
         
         
         let theme = UserDefaults.standard.bool(forKey: "blackTheme")
@@ -163,15 +165,23 @@ extension FileViewController : UITableViewDataSource{
         //определяем что находится в ячейке (папка или файл)
         let fullPath = path + "/" + files[indexPath.row]
         var isDir: ObjCBool = false
+   
        if FileManager.default.fileExists(atPath: fullPath, isDirectory: &isDir)
         {
            if isDir.boolValue == true {
-               cell.detailTextLabel?.text = "Folder"
-               cell.textLabel?.textColor = .blue
+               content.secondaryText = "Folder"
+               content.secondaryTextProperties.color = .systemBlue
+//               content.image = UIImage(named: "folder-icon")
+//               content.imageProperties.cornerRadius = tableView.rowHeight / 2
+             
            } else {
-               cell.detailTextLabel?.text = "photo"
-               cell.textLabel?.textColor = .black
+               content.secondaryText = "photo"
+               content.secondaryTextProperties.color = .systemGreen
+//               content.image = UIImage(named: "png-icon")
+//               content.imageProperties.cornerRadius = tableView.rowHeight / 2
            }
+           
+           cell.contentConfiguration = content
        }
          return cell
     
